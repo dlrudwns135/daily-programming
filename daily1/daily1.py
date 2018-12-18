@@ -16,3 +16,15 @@ def To_hexvalue(dec):
         return chr(ord('A') + (dec%10))
     else:
         return chr(ord('0') + (dec%10))
+
+
+def blend(obj):
+    value = {'r':0,'g':0,'b':0};
+    for i in obj:
+        value.__setitem__('r',int(value.get('r')) + int(i[1:3],16))
+        value.__setitem__('g', int(value.get('g')) + int(i[3:5],16))
+        value.__setitem__('b', int(value.get('b')) + int(i[5:7],16))
+    value.__setitem__('r', round(value.get('r')/obj.__len__()))
+    value.__setitem__('g', round(value.get('g') / obj.__len__()))
+    value.__setitem__('b', round(value.get('b') / obj.__len__()))
+    return Hexcolor(value.get('r'), value.get('g'), value.get('b'))
